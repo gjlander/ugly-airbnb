@@ -16,6 +16,9 @@
     scroll-behavior: smooth;
     font-family: "Roboto", sans-serif;
 }
+body {
+    background-color: beige;
+}
 
 ul {
     list-style: none;
