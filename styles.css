@@ -1,46 +1,256 @@
-/* I added a comment here */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --primary: #FF385C;
+    --bg: white;
+    --light-gray: #F7F7F7;
 }
 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all;
+    transition-duration: 0.2s;
+    scroll-behavior: smooth;
+    font-family: "Roboto", sans-serif;
+}
 body {
     background-color: beige;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background: color red;
-}
-
-.middle-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-.end-nav {
-    display: flex;
+ul {
     list-style: none;
-    gap: 1rem;
+    padding: 0;
+
 }
 
-.fancy-search {
+.text-primary {
+    color: var(--primary);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    animation: header-height ease-in-out forwards;
+    animation-timeline: scroll();
+    animation-range: 0px 20px
+}
+
+@keyframes header-height {
+    from {
+        height: 160px;
+    }
+
+    to {
+        height: 80px;
+    }
+}
+
+
+header .header {
+    z-index: 2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    padding: 1rem 3%;
+    text-align: center;
+    background-color: white;
+}
+
+nav li {
+    display: inline;
+    padding: 1rem;
+    border-radius: 50px;
+    color: #6A6A6A;
+}
+
+nav li:hover {
+    cursor: pointer;
+    background-color: var(--light-gray);
+}
+
+nav .activ {
+    font-weight: 500;
+    color: black;
+}
+
+nav .activ:hover {
+    background-color: transparent
+}
+
+header .header .left {
+    text-align: left;
+}
+
+header .header .right {
+    text-align: right;
+}
+
+header .header .right>a,
+header .header .right>i {
+    text-decoration: none;
+    color: black;
+    padding: 0.9rem 1rem;
+    border-radius: 20px
+}
+
+header .header .right>a:hover,
+header .header .right>i:hover {
+    cursor: pointer;
+    background-color: var(--light-gray);
+}
+
+header .header .right button {
+    all: unset;
+    padding: 0.4rem;
+    border-radius: 50px;
+    border: 0.05rem solid #b1b1b1;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+header .header .right button i {
+    vertical-align: middle;
+    color: #6b6b6b;
+    margin-inline: 0.3rem;
+}
+
+header .header .right button i:last-child {
+    font-size: 30px;
+}
+
+header .header .right button:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+
+nav {
+    animation: scroll-nav ease-in-out forwards;
+    animation-timeline: scroll();
+    animation-range: 0px 20px;
+}
+
+@keyframes scroll-nav {
+    from {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-200%) scale(0.1);
+        opacity: 0;
+    }
+}
+
+header .searchs {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
+    animation: scroll-search-inputs ease-in-out forwards;
+    animation-timeline: scroll();
+    animation-range: 0px 20px
+}
+
+@keyframes scroll-search-inputs {
+    from {
+        width: 800px;
+        transform: translateY(0);
+    }
+
+    to {
+        width: 500px;
+        transform: translateY(-80px);
+    }
+}
+
+header .search-inputs {
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    align-items: center;
+    color: black;
+    height: 70px;
+    border: 1px solid rgb(156, 156, 156);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 50px;
+    background-color: white;
+    transform-origin: top;
+    overflow: hidden;
+    padding-right: 5px;
 }
 
-.fancy-search input,
-button {
-    min-height: 30px;
+header .search-inputs .border {
+    height: 20px;
+    border-left: 0.01rem solid var(--light-gray);
+    margin-inline: 2px;
 }
-header {
-    border-bottom: 1px lightgray solid;
+
+header .search-inputs input {
+    all: unset;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    flex-shrink: 1;
+    border-radius: 50px;
+    padding: 1rem;
 }
+
+header .search-inputs input:hover {
+    background-color: var(--light-gray);
+}
+
+header .search-inputs input:focus {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+header .search-inputs input::placeholder {
+    font-weight: 500;
+    font-size: small;
+    color: rgb(22, 22, 22);
+}
+
+header .search-inputs .border {
+    border-right: 1px solid var(--light-gray);
+}
+
+header .search-inputs button {
+    cursor: pointer;
+    background-color: var(--primary);
+    color: white;
+    font-size: larger;
+    border: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+}
+
+@keyframes main-margin {
+    from {
+        margin-top: 160px;
+    }
+
+    to {
+        margin-top: 80px;
+    }
+}
+
+main {
+    padding: 1rem;
+    text-align: center;
+    margin-top: 160px;
+    height: 300vh;
+    animation: main-margin ease-in-out forwards;
+    animation-timeline: scroll();
+    animation-range: 0px 35px
+}
+
+
 
 .icon-bar {
     display: flex;
